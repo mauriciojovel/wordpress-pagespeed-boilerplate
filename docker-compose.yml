@@ -1,0 +1,45 @@
+version: "2"
+services:
+  wordpress:
+    build: ./docker/wordpress
+    links:
+      - mysql:mysql
+    environment:
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: site
+      WORDPRESS_TABLE_PREFIX: site_
+      WORDPRESS_DB_HOST: mysql
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - 80:80
+    links:
+     - wordpress
+    volumes_from:
+     - wordpress
+  mysql:
+    build: ./docker/mysql
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_DATABASE: site
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_INITDB_SKIP_TZINFO: 1
+  npm:
+    build: ./docker/node
+    links:
+      - nginx:local.dev
+    ports:
+      - 3000:3000
+      - 3001:3001
+    volumes_from:
+      - wordpress
+    volumes:
+      - ./src/styles:/app
+    #   - ./src/themes/Photography/assets:/assets
+    #   - ./src/themes/Photography:/php
+    environment:
+      ENVIRONMENT: "dev"

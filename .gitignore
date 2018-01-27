@@ -1,0 +1,4 @@
+src/styles/dist/**/*.css
+src/styles/dist/**/*.map
+src/styles/dist/**/*.js
+node_modules

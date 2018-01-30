@@ -1,4 +1,11 @@
 src/styles/dist/**/*.css
 src/styles/dist/**/*.map
 src/styles/dist/**/*.js
+src/wordpress/themes/index.php
+src/wordpress/themes/twentyfifteen
+src/wordpress/themes/twentyseventeen
+src/wordpress/themes/twentysixteen
+src/wordpress/plugins/akismet
+src/wordpress/plugins/hello.php
+src/wordpress/plugins/index.php
 node_modules

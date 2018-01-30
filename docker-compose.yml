@@ -4,6 +4,10 @@ services:
     build: ./docker/wordpress
     links:
       - mysql:mysql
+    volumes:
+      - ./src/wordpress/themes:/var/www/html/wp-content/themes
+      - ./src/wordpress/plugins:/var/www/html/wp-content/plugins
+      - ./src/wordpress/uploads:/var/www/html/wp-content/uploads
     environment:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
@@ -31,7 +35,7 @@ services:
   npm:
     build: ./docker/node
     links:
-      - nginx:local.dev
+      - nginx:dev.com
     ports:
       - 3000:3000
       - 3001:3001

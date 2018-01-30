@@ -14,8 +14,8 @@ var browserSync = require('browser-sync').create();
 
 // Config variables
 var config = {
-  localUrl: 'http://local.dev',
-  host: 'local.dev',
+  localUrl: 'http://dev.com',
+  host: 'dev.com',
   styles: {
     input: './sass/**/*.scss',
     output: './dist/css'

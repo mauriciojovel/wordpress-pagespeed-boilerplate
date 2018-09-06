@@ -17,3 +17,19 @@ $ docker-compose exec mysql sh -c 'export MYSQL_PWD="$MYSQL_PASSWORD";exec mysql
 ```sh
 $ sed -i 's/http:\/\/dev.com/http:\/\/mynewsite.com/g' ./database.sql
 ```
+
+## Debugging.
+
+You only need define your ip address in the os enviroment variable `IP_ADDRESS` on linux for example you can execute the command
+
+```sh
+$ IP_ADDRESS=$(ip addr show wlp2s0 | grep -Po 'inet \K[\d.]+') docker-compose up -d
+```
+
+Also if you are using `Visual Code` in the debugger process you can add the follow config to support the debbugger:
+
+```json
+"pathMappings": {
+    "/var/www/html/wp-content":"${workspaceFolder}/wp-content"
+}
+```

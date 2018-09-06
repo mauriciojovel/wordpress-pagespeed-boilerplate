@@ -14,6 +14,7 @@ services:
       WORDPRESS_DB_NAME: site
       WORDPRESS_TABLE_PREFIX: site_
       WORDPRESS_DB_HOST: mysql
+      XDEBUG_CONFIG: remote_host=${IP_ADDRESS}
   nginx:
     build: ./docker/nginx
     ports:

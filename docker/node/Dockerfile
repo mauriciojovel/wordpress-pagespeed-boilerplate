@@ -1,11 +1,27 @@
-FROM node:alpine
+FROM node:10.9.0-alpine
 
-RUN apk --no-cache --virtual build-dependencies add \
-    python \
-    make \
-    g++ \
-    && npm install \
-    && apk del build-dependencies
+RUN apk --update --no-cache \
+		add  \
+        bash \
+        make \
+        automake \
+		git \
+        gcc \
+        musl-dev \
+        openssh \
+		alpine-sdk  \
+		nasm  \
+        libtool \
+		autoconf  \
+		build-base \
+		zlib \
+		zlib-dev \
+		libpng \
+		libpng-dev\
+		libwebp \
+		libwebp-dev \
+		libjpeg-turbo \
+		libjpeg-turbo-dev
 
 RUN yarn global add gulp-cli
 RUN mkdir /app

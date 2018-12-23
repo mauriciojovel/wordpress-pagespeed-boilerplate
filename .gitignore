@@ -3,6 +3,10 @@ src/styles/dist/**/*.map
 src/styles/dist/**/*.js
 src/wordpress/themes/*
 src/wordpress/plugins/*
+src/wordpress/uploads/*
+!src/wordpress/themes/.gitkeep
+!src/wordpress/plugins/.gitkeep
+!src/wordpress/uploads/.gitkeep
 node_modules
 *.sql
-*.sql.gz
+.env

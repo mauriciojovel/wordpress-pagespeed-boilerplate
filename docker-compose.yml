@@ -2,19 +2,14 @@ version: "2"
 services:
   wordpress:
     build: ./docker/wordpress
+    env_file:
+      - .env
     links:
       - mysql:mysql
     volumes:
       - ./src/wordpress/themes:/var/www/html/wp-content/themes
       - ./src/wordpress/plugins:/var/www/html/wp-content/plugins
       - ./src/wordpress/uploads:/var/www/html/wp-content/uploads
-    environment:
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: site
-      WORDPRESS_TABLE_PREFIX: site_
-      WORDPRESS_DB_HOST: mysql
-      XDEBUG_CONFIG: remote_host=${IP_ADDRESS}
   nginx:
     build: ./docker/nginx
     ports:
@@ -25,16 +20,14 @@ services:
      - wordpress
   mysql:
     build: ./docker/mysql
+    env_file:
+      - .env
     ports:
       - 3306:3306
-    environment:
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-      MYSQL_DATABASE: site
-      MYSQL_RANDOM_ROOT_PASSWORD: example_password
-      MYSQL_INITDB_SKIP_TZINFO: 1
   npm:
     build: ./docker/node
+    env_file:
+      - .env
     links:
       - nginx:dev.com
     ports:
@@ -44,5 +37,3 @@ services:
       - wordpress
     volumes:
       - ./src/styles:/app
-    environment:
-      ENVIRONMENT: "dev"

@@ -1,0 +1,32 @@
+FROM node:10.9.0-alpine
+
+RUN apk --update --no-cache \
+		add  \
+        bash \
+        make \
+        automake \
+		git \
+        gcc \
+        musl-dev \
+        openssh \
+		alpine-sdk  \
+		nasm  \
+        libtool \
+		autoconf  \
+		build-base \
+		zlib \
+		zlib-dev \
+		libpng \
+		libpng-dev\
+		libwebp \
+		libwebp-dev \
+		libjpeg-turbo \
+		libjpeg-turbo-dev
+
+RUN yarn global add gulp-cli
+RUN mkdir /app
+WORKDIR /app
+RUN chown -R node:node /app
+RUN mkdir /assets
+RUN chown -R node:node /assets
+USER node

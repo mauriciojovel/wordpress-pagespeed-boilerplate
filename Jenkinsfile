@@ -1,9 +1,18 @@
 pipeline {
-  agent any
+  agent {
+    dockerfile {
+      filename 'Dockerfile.node'
+      args '-v $WORKSPACE/src/styles:/app -v $WORKSPACE/src/styles/dist:/assets'
+    }
+  }
   stages {
-    stage('Test') {
+    stage('Build sources') {
       steps {
-        echo 'Hello World'
+        dir('/app') {
+          sh 'ls -lh'
+          sh 'yarn install'
+          sh 'ls -lh'
+        }
       }
     }
   }

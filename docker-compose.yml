@@ -37,3 +37,4 @@ services:
       - wordpress
     volumes:
       - ./src/styles:/app
+      - ./src/styles/dist:/assets
